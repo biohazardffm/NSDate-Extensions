@@ -221,7 +221,7 @@
 
 	NSDate *beginningOfWeek = nil;
 	[cal rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek interval:NULL forDate:self];
-	return  beginningOfWeek;
+	return beginningOfWeek;
 }
 
 - (NSDateComponents *) componentsWithOffsetFromDate: (NSDate *) aDate
