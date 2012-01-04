@@ -215,6 +215,15 @@
 	return [CURRENT_CALENDAR dateFromComponents:components];
 }
 
+- (NSDate *) dateAtFirstDayOfWeek {
+	NSCalendar *cal = CURRENT_CALENDAR;
+	[cal setLocale:[NSLocale currentLocale]];
+
+	NSDate *beginningOfWeek = nil;
+	[cal rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek interval:NULL forDate:self];
+	return  beginningOfWeek;
+}
+
 - (NSDateComponents *) componentsWithOffsetFromDate: (NSDate *) aDate
 {
 	NSDateComponents *dTime = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:aDate toDate:self options:0];
