@@ -71,6 +71,17 @@
 	return newDate;		
 }
 
++ (NSDate *) dateWithFirstOfMonth: (NSUInteger) dMonth {
+	NSDate *date = [self date];
+	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:date];
+	[components setHour:0];
+	[components setMinute:0];
+	[components setSecond:0];
+	[components setDay:1];
+	[components setMonth:dMonth];
+	return [CURRENT_CALENDAR dateFromComponents:components];
+}
+
 #pragma mark Comparing Dates
 
 - (BOOL) isEqualToDateIgnoringTime: (NSDate *) aDate
@@ -222,6 +233,15 @@
 	NSDate *beginningOfWeek = nil;
 	[cal rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek interval:NULL forDate:self];
 	return beginningOfWeek;
+}
+
+- (NSDate *) dateAtFirstDayOfMonth {
+	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+	[components setHour:0];
+	[components setMinute:0];
+	[components setSecond:0];
+	[components setDay:1];
+	return [CURRENT_CALENDAR dateFromComponents:components];
 }
 
 - (NSDateComponents *) componentsWithOffsetFromDate: (NSDate *) aDate
